@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        td:nth-child(even) {
+            background-color: lightblue;
+        }
+
+        td:nth-child(odd) {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/users/add}">ADD USER </a>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Sử dụng Thymeleaf để lặp qua danh sách các đối tượng -->
+    <tr th:each="user : ${listUser}">
+        <td th:text="${user.id}"></td> <!-- Hiển thị ID -->
+        <td th:text="${user.name}"></td> <!-- Hiển thị tên -->
+        <td><a onclick="return confirm('Có chắc là muốn xoá không ? ')" th:href="@{'/users/' + ${user.id} + '/delete'}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
